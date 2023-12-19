@@ -77,7 +77,7 @@ if [ $1 ]; then
         	docker run -it --security-opt seccomp=unconfined --rm --net=host -v $1:/media -v $2:/etc/xiaoya -e LANG=C.UTF-8  xiaoyaliu/glue:latest /update_all.sh
                 	echo "http://$docker0:8096" > $2/emby_server.txt
 			echo e825ed6f7f8f44ffa0563cddaddce14d > $2/infuse_api_key.txt
-			chmod -R 777 $1/*
+			# chmod -R 777 $1/*
 	else
 		if [ -s /etc/xiaoya/docker_address.txt ]; then
 			docker run -it --security-opt seccomp=unconfined --rm --net=host -v $1:/media -v /etc/xiaoya:/etc/xiaoya -e LANG=C.UTF-8  xiaoyaliu/glue:latest /update_all.sh
@@ -89,7 +89,7 @@ if [ $1 ]; then
 		fi	
                 	echo "http://$docker0:8096" > $config_dir/emby_server.txt
 			echo e825ed6f7f8f44ffa0563cddaddce14d > $config_dir/infuse_api_key.txt
-			chmod -R 777 $1/*
+			# chmod -R 777 $1/*
 	fi
 	
 	echo "开始安装Emby容器....."
