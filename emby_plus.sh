@@ -63,8 +63,8 @@ if [ $1 ]; then
 
 	mkdir -p $1/xiaoya
 	mkdir -p $1/config
-	chmod 755 $1
-	chown root:root $1
+	# chmod 755 $1
+	# chown root:root $1
 	local_sha=$(docker inspect --format='{{index .RepoDigests 0}}' xiaoyaliu/glue:latest  |cut -f2 -d:)
 	remote_sha=$(curl -s "https://hub.docker.com/v2/repositories/xiaoyaliu/glue/tags/latest"|grep -o '"digest":"[^"]*' | grep -o '[^"]*$' |tail -n1 |cut -f2 -d:)
 	if [ ! "$local_sha" == "$remote_sha" ]; then
