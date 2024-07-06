@@ -6,12 +6,15 @@ let hasUid = (url) => url.includes("uid");
 // 从 URL 中提取 uid 参数的值
 let getUid = (url) => (hasUid(url) ? url.match(/uid=(\d+)/)[1] : undefined);
 
-// 替换多个字符串的函数
-let replaceStrings = (str) => {
-  str = str.replace("01A57gF-4IeYWcLdRTObYmMprlAE3yrtzh1ChnNzU9XTP1YMs", "01A1ARC2VDHpvFs4h4J0t3loBZXf4zZPcWxbsn7Y4Y_ToVXQ4");
-  str = str.replace("_2A25JgpXFDeRxGeRI4lUY8S_EyT2IHXVoGa4NrDV6PUJbkdAGLVT6kWpNUpSb2BqK7UB7ynrzO1n_weQ7Eb8v4HbU", "_2A25LjWOtDeRxGeRI4lUY8S_EyT2IHXVmG_BlrDV6PUJbkdCOLWjdkWpNUpSb2E7AUMRoDjZZkeVs2fdztphSwp90");
-  return str;
+// 替换单字符串的函数
+let replaceString = (str) => {
+  let newStr = str.replace("01A57gF-4IeYWcLdRTObYmMprlAE3yrtzh1ChnNzU9XTP1YMs", "01A1ARC2VDHpvFs4h4J0t3loBZXf4zZPcWxbsn7Y4Y_ToVXQ4");
+  newStr = newStr.replace("_2A25JgpXFDeRxGeRI4lUY8S_EyT2IHXVoGa4NrDV6PUJbkdAGLVT6kWpNUpSb2BqK7UB7ynrzO1n_weQ7Eb8v4HbU", "_2A25LjWOtDeRxGeRI4lUY8S_EyT2IHXVmG_BlrDV6PUJbkdCOLWjdkWpNUpSb2E7AUMRoDjZZkeVs2fdztphSwp90");
+  return newStr;
 }
+
+// 替换 URL 中的字符串
+url = replaceString(url);
 
 if (url.includes("users/show")) {
   // 提取并保存 uid
@@ -34,7 +37,7 @@ if (url.includes("users/show")) {
 
   // 替换特定字符串
   let body = JSON.stringify({ statuses, since_id: sinceId, total_number: 100 });
-  body = replaceStrings(body);
+  body = replaceString(body);
 
   $done({ body });
 } else {
