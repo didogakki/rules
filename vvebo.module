@@ -2,9 +2,9 @@
 
 
 [Script]
-Vvebo-request = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/2\/(users\/show\?|statuses\/user_timeline\?),requires-body=1,script-path=https://raw.githubusercontent.com/didogakki/rules/main/vv.js?token=GHSAT0AAAAAACRLI5AYJWQT5DD7HLBI3VHYZUJMF2Q
+Vvebo-request = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/2\/(users\/show\?|statuses\/user_timeline\?),requires-body=1,script-path=https://raw.githubusercontent.com/didogakki/rules/main/vv.js?token=GHSAT0AAAAAACRLI5AZT2VT35HJEEREPVMOZUJMPUA
 
-Vvebo_response = type=http-response,pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/statuses\/tab\?,requires-body=1,script-path=https://raw.githubusercontent.com/didogakki/rules/main/vv.js?token=GHSAT0AAAAAACRLI5AYJWQT5DD7HLBI3VHYZUJMF2Q
+Vvebo_response = type=http-response,pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/statuses\/tab\?,requires-body=1,script-path=https://raw.githubusercontent.com/didogakki/rules/main/vv.js?token=GHSAT0AAAAAACRLI5AZT2VT35HJEEREPVMOZUJMPUA
 
 [MITM]
 hostname = %INSERT% api.weibo.cn
