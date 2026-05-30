@@ -1,0 +1,9 @@
+#!name=Bilibili CDN Rewrite
+#!desc=Rewrite Bilibili video CDN URLs to a selected host. Requires Surge MITM and trusted CA on each client device.
+#!arguments=CDN_HOST=cn-hk-eq-01-01.bilivideo.com
+
+[MITM]
+hostname = %APPEND% api.bilibili.com,api.live.bilibili.com,api.vc.bilibili.com,app.bilibili.com,api.biliapi.net,api.biliapi.com,grpc.biliapi.net,*.bilivideo.com,*.bilivideo.cn,*.acgvideo.com,*.acgvideo.cn,upos-hz-mirrorakam.akamaized.net,edge.mountaintoys.cn
+
+[Script]
+Bilibili CDN Rewrite Response = type=http-response,pattern=^https?:\/\/(?:[^\/]+\.)?(?:bilibili\.com|biliapi\.(?:net|com))\/.*(?:playurl|playview|getRoomPlayInfo|master\/url|player|dash|neptune),requires-body=true,max-size=2097152,timeout=5,script-path=https://raw.githubusercontent.com/didogakki/rules/refs/heads/main/https://raw.githubusercontent.com/didogakki/rules/refs/heads/main/bilibili-cdn-rewrite.js?token=GHSAT0AAAAAADMT6Q5F4MWJE2E2AUAZ55QC2Q2VPAA?token=GHSAT0AAAAAADMT6Q5F4MWJE2E2AUAZ55QC2Q2VPAA,argument=%CDN_HOST%
