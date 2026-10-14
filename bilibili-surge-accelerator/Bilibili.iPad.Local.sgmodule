@@ -1,0 +1,8 @@
+#!name=Bilibili iPad Media Redirect (Local)
+#!desc=Redirect iPad Bilibili media fragments to the HK EQ CDN for steadier playback.
+#!category=Bilibili
+#!arguments=MediaEnabled:true,MediaHost:cn-hk-eq-01-04.bilivideo.com
+#!arguments-desc=MediaEnabled controls this request rewrite. MediaHost must be a bilivideo.com CDN hostname.
+
+[Script]
+Bilibili iPad Media Redirect (Local) = type=http-request,pattern=^http:\/\/(?:[0-9]+\.)+[0-9]+(?::[0-9]+)?\/upgcxcode\/[^?#]+\.m4s\?,script-path=media-redirect.js,argument="enabled={{{MediaEnabled}}}&host={{{MediaHost}}}"

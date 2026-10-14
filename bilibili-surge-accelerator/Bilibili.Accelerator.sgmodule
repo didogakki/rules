@@ -1,11 +1,12 @@
 #!name=Bilibili CDN Candidate Priority
-#!desc=Reorder CDN candidates in Bilibili JSON playurl responses (promotes preferred hosts, keeps every fallback). JSON only.
+#!desc=Prioritize JSON playurl candidates and redirect matching iPad media requests to a tested CDN.
 #!category=Bilibili
-#!arguments=Enabled:true,PreferredHosts:upos-sz-mirrorcos.bilivideo.com
-#!arguments-desc=Enabled: true/false.\nPreferredHosts: hostnames in priority order separated by "|" or spaces; ".example.com" matches subdomains.
+#!arguments=Enabled:true,PreferredHosts:upos-sz-mirrorcos.bilivideo.com,MediaEnabled:true,MediaHost:cn-hk-eq-01-04.bilivideo.com
+#!arguments-desc=Enabled controls JSON playurl preference. PreferredHosts lists JSON hosts. MediaEnabled controls iPad media redirection. MediaHost is the target bilivideo.com CDN.
 
 [Script]
 Bilibili Playurl Priority = type=http-response,pattern=^https:\/\/api\.bilibili\.com\/(?:x\/player\/(?:wbi\/)?playurl|pgc\/player\/(?:web|api)\/playurl)(?:\?|$),requires-body=1,max-size=1048576,script-path=https://raw.githubusercontent.com/didogakki/rules/main/bilibili-surge-accelerator/accelerator.js,argument="enabled={{{Enabled}}}&preferred={{{PreferredHosts}}}"
+Bilibili iPad Media Redirect = type=http-request,pattern=^http:\/\/(?:[0-9]+\.)+[0-9]+(?::[0-9]+)?\/upgcxcode\/[^?#]+\.m4s\?,script-path=https://raw.githubusercontent.com/didogakki/rules/main/bilibili-surge-accelerator/media-redirect.js,argument="enabled={{{MediaEnabled}}}&host={{{MediaHost}}}"
 
 [MITM]
 hostname = %APPEND% api.bilibili.com
