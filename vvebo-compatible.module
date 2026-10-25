@@ -1,5 +1,5 @@
-#!name= VVebo 个人页修复（兼容微博官方客户端）
-#!desc= 仅处理请求 URL 中带 Weibo_intl 的 VVebo 流量；与原版模块互斥。
+#!name= VVebo 个人页修复（兼容实验版）
+#!desc= 仅处理 URL 带 Weibo_intl 的请求；与原版模块互斥，需在真实客户端验收。
 
 [Script]
 Vvebo-request = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/2\/(users\/show\?|statuses\/user_timeline\?).*Weibo_intl,requires-body=1,script-path=https://raw.githubusercontent.com/didogakki/rules/main/vv.js
